@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/e421083458/gin_scaffold/public"
+	"Initial/public"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/zh"
