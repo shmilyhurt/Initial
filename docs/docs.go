@@ -19,15 +19,14 @@ var doc = `{
         "description": "{{.Description}}",
         "title": "{{.Title}}",
         "contact": {},
-        "license": {},
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/demo/bind": {
-            "post": {
-                "description": "测试数据绑定",
+        "/user/index": {
+            "get": {
+                "description": "管理员信息",
                 "consumes": [
                     "application/json"
                 ],
@@ -35,21 +34,10 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "用户"
+                    "管理员接口"
                 ],
-                "summary": "测试数据绑定",
-                "operationId": "/demo/bind",
-                "parameters": [
-                    {
-                        "description": "body",
-                        "name": "polygon",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/dto.DemoInput"
-                        }
-                    }
-                ],
+                "summary": "管理员信息",
+                "operationId": "/user/index",
                 "responses": {
                     "200": {
                         "description": "success",
@@ -62,7 +50,7 @@ var doc = `{
                                     "type": "object",
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/definitions/dto.DemoInput"
+                                            "type": "string"
                                         }
                                     }
                                 }
@@ -74,28 +62,6 @@ var doc = `{
         }
     },
     "definitions": {
-        "dto.DemoInput": {
-            "type": "object",
-            "required": [
-                "age",
-                "name",
-                "passwd"
-            ],
-            "properties": {
-                "age": {
-                    "type": "integer",
-                    "example": 20
-                },
-                "name": {
-                    "type": "string",
-                    "example": "姓名"
-                },
-                "passwd": {
-                    "type": "string",
-                    "example": "123456"
-                }
-            }
-        },
         "middleware.Response": {
             "type": "object",
             "properties": {

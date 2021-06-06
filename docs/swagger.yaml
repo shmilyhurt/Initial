@@ -1,20 +1,4 @@
 definitions:
-  dto.DemoInput:
-    properties:
-      age:
-        example: 20
-        type: integer
-      name:
-        example: 姓名
-        type: string
-      passwd:
-        example: "123456"
-        type: string
-    required:
-    - age
-    - name
-    - passwd
-    type: object
   middleware.Response:
     properties:
       data:
@@ -30,21 +14,13 @@ definitions:
     type: object
 info:
   contact: {}
-  license: {}
 paths:
-  /demo/bind:
-    post:
+  /user/index:
+    get:
       consumes:
       - application/json
-      description: 测试数据绑定
-      operationId: /demo/bind
-      parameters:
-      - description: body
-        in: body
-        name: polygon
-        required: true
-        schema:
-          $ref: '#/definitions/dto.DemoInput'
+      description: 管理员信息
+      operationId: /user/index
       produces:
       - application/json
       responses:
@@ -55,9 +31,9 @@ paths:
             - $ref: '#/definitions/middleware.Response'
             - properties:
                 data:
-                  $ref: '#/definitions/dto.DemoInput'
+                  type: string
               type: object
-      summary: 测试数据绑定
+      summary: 管理员信息
       tags:
-      - 用户
+      - 管理员接口
 swagger: "2.0"

@@ -1,9 +1,9 @@
 package router
 
 import (
-	"github.com/e421083458/golang_common/lib"
-	"github.com/gin-gonic/gin"
+	"Initial/controller"
 	"Initial/docs"
+	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 )
@@ -54,12 +54,12 @@ import (
 // @x-extension-openapi {"example": "value on a json format"}
 
 func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
-	// programatically set swagger info
-	docs.SwaggerInfo.Title = lib.GetStringConf("base.swagger.title")
-	docs.SwaggerInfo.Description = lib.GetStringConf("base.swagger.desc")
+	// set swagger info
+	docs.SwaggerInfo.Title = "Initial swagger api"
+	docs.SwaggerInfo.Description = "It is just a server"
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = lib.GetStringConf("base.swagger.host")
-	docs.SwaggerInfo.BasePath = lib.GetStringConf("base.swagger.base_path")
+	docs.SwaggerInfo.Host = "127.0.0.1:8000"
+	docs.SwaggerInfo.BasePath = ""
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 
 	router := gin.Default()
@@ -70,6 +70,11 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 		})
 	})
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	userRouter := router.Group("/user")
+	{
+		controller.UserRegister(userRouter)
+	}
 
 	return router
 }
