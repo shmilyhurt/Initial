@@ -1,15 +1,17 @@
 package main
 
 import (
+	"Initial/conf"
 	"Initial/router"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
-func main()  {
-	err := router.InitRouter().Run(":8000")
-	if err != nil{
+func main() {
+	conf.InitDb()
+	err := router.InitRouter().Run(":8880")
+	if err != nil {
 		return
 	}
 

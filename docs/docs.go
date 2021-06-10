@@ -24,9 +24,42 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/user/create": {
+            "post": {
+                "description": "增加用户信息",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户信息接口"
+                ],
+                "summary": "用户信息",
+                "operationId": "/user/create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/user/index": {
             "get": {
-                "description": "管理员信息",
+                "description": "获取用户信息",
                 "consumes": [
                     "application/json"
                 ],
@@ -34,51 +67,17 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "管理员接口"
+                    "用户信息接口"
                 ],
-                "summary": "管理员信息",
+                "summary": "用户信息",
                 "operationId": "/user/index",
                 "responses": {
                     "200": {
                         "description": "success",
                         "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/middleware.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "data": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            ]
+                            "type": "string"
                         }
                     }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "middleware.Response": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "type": "object"
-                },
-                "errmsg": {
-                    "type": "string"
-                },
-                "errno": {
-                    "type": "integer"
-                },
-                "stack": {
-                    "type": "object"
-                },
-                "trace_id": {
-                    "type": "object"
                 }
             }
         }

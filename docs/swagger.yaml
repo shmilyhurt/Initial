@@ -1,25 +1,33 @@
-definitions:
-  middleware.Response:
-    properties:
-      data:
-        type: object
-      errmsg:
-        type: string
-      errno:
-        type: integer
-      stack:
-        type: object
-      trace_id:
-        type: object
-    type: object
 info:
   contact: {}
 paths:
+  /user/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 增加用户信息
+      operationId: /user/create
+      parameters:
+      - description: name
+        in: formData
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 用户信息
+      tags:
+      - 用户信息接口
   /user/index:
     get:
       consumes:
       - application/json
-      description: 管理员信息
+      description: 获取用户信息
       operationId: /user/index
       produces:
       - application/json
@@ -27,13 +35,8 @@ paths:
         "200":
           description: success
           schema:
-            allOf:
-            - $ref: '#/definitions/middleware.Response'
-            - properties:
-                data:
-                  type: string
-              type: object
-      summary: 管理员信息
+            type: string
+      summary: 用户信息
       tags:
-      - 管理员接口
+      - 用户信息接口
 swagger: "2.0"
