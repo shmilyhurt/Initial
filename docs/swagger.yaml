@@ -1,6 +1,52 @@
 info:
   contact: {}
 paths:
+  /login:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 登录接口
+      operationId: /user/Login
+      parameters:
+      - in: formData
+        name: password
+        type: string
+      - in: formData
+        name: username
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 登录
+      tags:
+      - 用户信息接口
+  /register:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 增加用户信息
+      operationId: /user/register
+      parameters:
+      - in: formData
+        name: password
+        type: string
+      - in: formData
+        name: username
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 注册
+      tags:
+      - 用户信息接口
   /user/create:
     post:
       consumes:
@@ -8,9 +54,16 @@ paths:
       description: 增加用户信息
       operationId: /user/create
       parameters:
-      - description: name
-        in: formData
-        name: name
+      - in: formData
+        name: password
+        type: string
+      - in: formData
+        name: username
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
         required: true
         type: string
       produces:
@@ -23,12 +76,19 @@ paths:
       summary: 用户信息
       tags:
       - 用户信息接口
-  /user/index:
+  /user/users:
     get:
       consumes:
       - application/json
       description: 获取用户信息
       operationId: /user/index
+      parameters:
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
       produces:
       - application/json
       responses:

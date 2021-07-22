@@ -2,6 +2,7 @@ package main
 
 import (
 	"Initial/conf"
+	"Initial/public"
 	"Initial/router"
 	"os"
 	"os/signal"
@@ -10,6 +11,8 @@ import (
 
 func main() {
 	conf.InitDb()
+	conf.RedisInit()
+	public.InitValidator()
 	err := router.InitRouter().Run(":8880")
 	if err != nil {
 		return

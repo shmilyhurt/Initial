@@ -40,3 +40,7 @@ func SuccessResponseDetailed(c *gin.Context, data interface{}, message string) {
 func FailResponse(c *gin.Context, code ResponseCode, message string) {
 	Result(c, code, map[string]interface{}{}, message)
 }
+
+func FailWithDetailed( c *gin.Context, code ResponseCode, data interface{}, message string,) {
+	Result(c, code, data, message)
+}

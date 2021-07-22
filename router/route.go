@@ -3,6 +3,7 @@ package router
 import (
 	"Initial/controller"
 	"Initial/docs"
+	"Initial/middleware"
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
@@ -71,7 +72,17 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	})
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
+	loginRouter := router.Group("")
+	loginRouter.Use(
+	)
+	{
+		controller.LoginRegister(loginRouter)
+	}
+
 	userRouter := router.Group("/user")
+	userRouter.Use(
+		middleware.JwtAuth(),
+	)
 	{
 		controller.UserRegister(userRouter)
 	}
