@@ -20,16 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1ba09be-1580-48fe-8f50-186832d0a5c1" name="Default Changelist" comment="package response">
-      <change beforePath="$PROJECT_DIR$/conf/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/db.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/Initial_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/Initial_user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/middleware/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/response.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/route.go" afterDir="false" />
     </list>
@@ -129,10 +124,14 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1622987324650">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627197376980">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1622987324650" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627197376980" />
+    <state x="740" y="225" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1627197201940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="225" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627197201940" />
     <state x="656" y="144" key="#go_build_Initial_user.go" timestamp="1623256984968">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -197,9 +196,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="364" y="103" width="1105" height="637" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1622988425917" />
-    <state x="642" y="179" width="596" height="594" key="find.popup" timestamp="1623861153343">
+    <state x="642" y="179" width="596" height="594" key="find.popup" timestamp="1627575502274">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="642" y="179" width="596" height="594" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1623861153343" />
+    <state x="642" y="179" width="596" height="594" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1627575502274" />
   </component>
 </project>

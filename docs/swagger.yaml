@@ -24,6 +24,126 @@ paths:
       summary: 登录
       tags:
       - 用户信息接口
+  /project/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 增加项目信息
+      operationId: /project/create
+      parameters:
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: status
+        type: string
+      - in: formData
+        name: type
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 增加项目
+      tags:
+      - 项目信息接口
+  /project/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 删除单个项目
+      operationId: /project/delete
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 删除项目
+      tags:
+      - 项目信息接口
+  /project/patch:
+    patch:
+      consumes:
+      - multipart/form-data
+      description: 修改项目信息
+      operationId: /project/patch
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: status
+        type: string
+      - in: formData
+        name: type
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 修改项目
+      tags:
+      - 项目信息接口
+  /project/projects:
+    get:
+      consumes:
+      - application/json
+      description: 获取项目信息
+      operationId: /project/index
+      parameters:
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 项目信息
+      tags:
+      - 项目信息接口
   /register:
     post:
       consumes:
@@ -73,7 +193,69 @@ paths:
           description: success
           schema:
             type: string
-      summary: 用户信息
+      summary: 增加用户
+      tags:
+      - 用户信息接口
+  /user/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 删除单个用户
+      operationId: /user/delete
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 删除用户
+      tags:
+      - 用户信息接口
+  /user/patch:
+    patch:
+      consumes:
+      - multipart/form-data
+      description: 修改用户信息
+      operationId: /user/patch
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: password
+        type: string
+      - in: formData
+        name: username
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 修改用户
       tags:
       - 用户信息接口
   /user/users:

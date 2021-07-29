@@ -5,16 +5,15 @@ import (
 	"net/http"
 )
 
-type ResponseCode int
 
 type Response struct {
-	Code ResponseCode `json:"code"`
+	Code int `json:"code"`
 	Data interface{}  `json:"data"`
 	Msg  string       `json:"msg"`
 }
 
-func Result(c *gin.Context, code ResponseCode, data interface{}, msg string) {
-	c.JSON(http.StatusOK, Response{
+func Result(c *gin.Context, code int, data interface{}, msg string) {
+	c.JSON(code, Response{
 		code,
 		data,
 		msg,
@@ -37,10 +36,10 @@ func SuccessResponseDetailed(c *gin.Context, data interface{}, message string) {
 	Result(c, http.StatusOK, data, message)
 }
 
-func FailResponse(c *gin.Context, code ResponseCode, message string) {
+func FailResponse(c *gin.Context, code int, message string) {
 	Result(c, code, map[string]interface{}{}, message)
 }
 
-func FailWithDetailed( c *gin.Context, code ResponseCode, data interface{}, message string,) {
+func FailWithDetailed( c *gin.Context, code int, data interface{}, message string,) {
 	Result(c, code, data, message)
 }

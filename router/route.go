@@ -87,5 +87,13 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 		controller.UserRegister(userRouter)
 	}
 
+	projectRouter := router.Group("/project")
+	projectRouter.Use(
+		middleware.JwtAuth(),
+	)
+	{
+		controller.ProjectRegister(projectRouter)
+	}
+
 	return router
 }
