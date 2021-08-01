@@ -1,6 +1,126 @@
 info:
   contact: {}
 paths:
+  /event/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 增加事件信息
+      operationId: /event/create
+      parameters:
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: status
+        type: string
+      - in: formData
+        name: type
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 增加事件
+      tags:
+      - 事件信息接口
+  /event/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 删除单个事件
+      operationId: /event/delete
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 删除事件
+      tags:
+      - 事件信息接口
+  /event/events:
+    get:
+      consumes:
+      - application/json
+      description: 获取事件信息
+      operationId: /event/events
+      parameters:
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 事件信息
+      tags:
+      - 事件信息接口
+  /event/patch:
+    patch:
+      consumes:
+      - multipart/form-data
+      description: 修改事件信息
+      operationId: /event/patch
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: status
+        type: string
+      - in: formData
+        name: type
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 修改事件
+      tags:
+      - 事件信息接口
   /login:
     post:
       consumes:
@@ -126,7 +246,7 @@ paths:
       consumes:
       - application/json
       description: 获取项目信息
-      operationId: /project/index
+      operationId: /project/projects
       parameters:
       - default: Bearer <Add access token here>
         description: Insert your access token

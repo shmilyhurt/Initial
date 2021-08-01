@@ -50,7 +50,7 @@ func (projectControl *ProjectController) CreateProject(c *gin.Context) {
 // @Summary 项目信息
 // @Description 获取项目信息
 // @Tags 项目信息接口
-// @ID /project/index
+// @ID /project/projects
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} string "success"
