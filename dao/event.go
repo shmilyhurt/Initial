@@ -7,11 +7,12 @@ import (
 
 type Event struct {
 	Id int `json:"id" gorm:"primary_key"`
-	Pro int `gorm:"column:pro;not null"`
+	Pro int `json:"pro"gorm:"column:pro;not null"`
+	User int `json:"user"gorm:"column:user;not null"`
 	Name string `json:"name" gorm:"column:name;size:256"`
 	Type string  `json:"type" gorm:"column:type;size:64"`
-	Status string `json:"status" gorm:"column:status;size:64"`
-	Created   time.Time `gorm:"autoCreateTime;column:created"`
+	Status string `json:"status"gorm:"column:status;size:64;default:S"`
+	Created   time.Time `json:"created"gorm:"autoCreateTime;column:created"`
 	IsDelete int `json:"is_delete" gorm:"column:is_delete;default:1"`
 }
 
