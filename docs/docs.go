@@ -609,6 +609,20 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
+                        "description": "PageSize",
+                        "name": "PageSize",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "PageNo",
+                        "name": "PageNo",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
                         "default": "Bearer \u003cAdd access token here\u003e",
                         "description": "Insert your access token",
                         "name": "token",

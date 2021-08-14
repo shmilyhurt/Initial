@@ -5,8 +5,10 @@ import (
 	"Initial/dao"
 	"Initial/dto"
 	"Initial/middleware"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 type UserController struct{}
@@ -51,17 +53,39 @@ func (userControl *UserController) CreateUser(c *gin.Context) {
 // @ID /user/index
 // @Accept  json
 // @Produce  json
+// @Param Info query string true "Info"
+// @Param PageSize query string true "PageSize"
+// @Param PageNo query string true "PageNo"
 // @Success 200 {object} string "success"
 // @Router /user/users  [get]
 // @Param token header string true "Insert your access token" default(Bearer <Add access token here>)
 func (userControl *UserController) GetUserList(c *gin.Context) {
 	var user []dao.User
-	err := dao.FindAllUser(conf.Db, &user)
+	var count int64
+	params := &dto.UserListInput{}
+	params.Info = c.Query("Info")
+	params.PageSize, _ = strconv.Atoi(c.Query("PageSize"))
+	params.PageNo, _ = strconv.Atoi(c.Query("PageNo"))
+	fmt.Print(params)
+	err := dao.FindAllUser(conf.Db, &user, &count, params)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
-	middleware.SuccessResponseWithData(c, user)
+	var outputList []dto.UserListItemOutput
+	for _, item := range user{
+		outputList = append(outputList, dto.UserListItemOutput{
+			Id: item.Id,
+			UserName: item.UserName,
+			Password: item.Password,
+			CreatedAt: item.CreatedAt,
+		})
+	}
+	output := dto.UserListOutput{
+		List:  outputList,
+		Total: count,
+	}
+	middleware.SuccessResponseWithData(c, output)
 }
 
 
@@ -83,7 +107,7 @@ func (userControl *UserController) DelUser(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
-	err1 := dao.DeleteUser(conf.Db, &user, id)
+	err1 := dao.DeleteUser(conf.Db, &user)
 	if err1 != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
@@ -123,7 +147,7 @@ func (userControl *UserController) PatchUser(c *gin.Context) {
 	if r.PassWord != "" {
 		user.Password = r.PassWord
 	}
-	conf.Db.UpdateColumns(&user)
+	conf.Db.Updates(&user)
 	middleware.SuccessResponseWithData(c, user)
 }
 

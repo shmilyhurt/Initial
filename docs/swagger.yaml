@@ -385,6 +385,16 @@ paths:
       description: 获取用户信息
       operationId: /user/index
       parameters:
+      - description: PageSize
+        in: query
+        name: PageSize
+        required: true
+        type: string
+      - description: PageNo
+        in: query
+        name: PageNo
+        required: true
+        type: string
       - default: Bearer <Add access token here>
         description: Insert your access token
         in: header
