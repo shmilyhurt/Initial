@@ -144,6 +144,41 @@ paths:
       summary: 登录
       tags:
       - 用户信息接口
+  /plan/create:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 增加计划信息
+      operationId: /plan/create
+      parameters:
+      - in: formData
+        name: end
+        type: string
+      - in: formData
+        name: start
+        type: string
+      - in: formData
+        name: title
+        type: string
+      - in: formData
+        name: user
+        type: integer
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 增加计划
+      tags:
+      - 计划信息接口
   /project/create:
     post:
       consumes:
@@ -385,6 +420,11 @@ paths:
       description: 获取用户信息
       operationId: /user/index
       parameters:
+      - description: Info
+        in: query
+        name: Info
+        required: true
+        type: string
       - description: PageSize
         in: query
         name: PageSize

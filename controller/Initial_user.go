@@ -5,7 +5,6 @@ import (
 	"Initial/dao"
 	"Initial/dto"
 	"Initial/middleware"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -66,7 +65,6 @@ func (userControl *UserController) GetUserList(c *gin.Context) {
 	params.Info = c.Query("Info")
 	params.PageSize, _ = strconv.Atoi(c.Query("PageSize"))
 	params.PageNo, _ = strconv.Atoi(c.Query("PageNo"))
-	fmt.Print(params)
 	err := dao.FindAllUser(conf.Db, &user, &count, params)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})

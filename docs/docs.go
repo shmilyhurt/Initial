@@ -240,6 +240,60 @@ var doc = `{
                 }
             }
         },
+        "/plan/create": {
+            "post": {
+                "description": "增加计划信息",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "计划信息接口"
+                ],
+                "summary": "增加计划",
+                "operationId": "/plan/create",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "end",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "start",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "title",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "name": "user",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "default": "Bearer \u003cAdd access token here\u003e",
+                        "description": "Insert your access token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/project/create": {
             "post": {
                 "description": "增加项目信息",
@@ -607,6 +661,13 @@ var doc = `{
                 "summary": "用户信息",
                 "operationId": "/user/index",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Info",
+                        "name": "Info",
+                        "in": "query",
+                        "required": true
+                    },
                     {
                         "type": "string",
                         "description": "PageSize",

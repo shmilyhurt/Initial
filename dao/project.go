@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"Initial/dto"
 	"gorm.io/gorm"
 	"time"
 )
@@ -20,12 +21,25 @@ func (p *Project) TableName() string {
 }
 
 //get projects
-func FindAllProject(db *gorm.DB, project *[]Project) (err error) {
-	err = db.Find(&project).Error
-	if err != nil {
-		return err
+func FindAllProject(db *gorm.DB,project *[]Project, count *int64,  params *dto.ProjectListInput) (err error) {
+	info := params.Info
+	pageNo := params.PageNo
+	pageSize := params.PageSize
+	offset := (pageNo - 1) * pageSize
+	query := db.Limit(pageSize).Offset(offset).Where("is_delete", 1)
+	if len(info) != 0{
+		err = query.Where("id like ?", "%" +info + "%").Or("name like ?", "%" +info + "%").Find(&project).Count(count).Error
+		if err != nil {
+			return err
+		}
+		return nil
+	}else{
+		err = query.Find(&project).Count(count).Error
+		if err != nil {
+			return err
+		}
+		return nil
 	}
-	return nil
 }
 
 //create a project
@@ -47,7 +61,8 @@ func GetProject(db *gorm.DB, Project *Project, id string) (err error) {
 }
 
 //delete project
-func DeleteProject(db *gorm.DB, Project *Project, id string) (err error) {
-	db.Where("id = ?", id).Delete(Project)
+func DeleteProject(db *gorm.DB, Project *Project) (err error) {
+	Project.IsDelete = 0
+	db.Model(Project).Update("is_delete", 0)
 	return nil
 }

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
 )
 
 type ProjectController struct{}
@@ -58,12 +59,32 @@ func (projectControl *ProjectController) CreateProject(c *gin.Context) {
 // @Param token header string true "Insert your access token" default(Bearer <Add access token here>)
 func (projectControl *ProjectController) GetProjectList(c *gin.Context) {
 	var project []dao.Project
-	err := dao.FindAllProject(conf.Db, &project)
+	var count int64
+	params := &dto.ProjectListInput{}
+	params.Info = c.Query("Info")
+	params.PageSize, _ = strconv.Atoi(c.Query("PageSize"))
+	params.PageNo, _ = strconv.Atoi(c.Query("PageNo"))
+	err := dao.FindAllProject(conf.Db, &project, &count, params)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
-	middleware.SuccessResponseWithData(c, project)
+	var outputList []dto.ProjectListItemOutput
+	for _, item := range project{
+		outputList = append(outputList, dto.ProjectListItemOutput{
+			Id: item.Id,
+			User: item.User,
+			Name: item.Name,
+			Type: item.Type,
+			Status: item.Status,
+			CreatedAt: item.Created,
+		})
+	}
+	output := dto.ProjectListOutput{
+		List:  outputList,
+		Total: count,
+	}
+	middleware.SuccessResponseWithData(c, output)
 }
 
 
@@ -85,7 +106,7 @@ func (projectControl *ProjectController) DelProject(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
-	err1 := dao.DeleteProject(conf.Db, &project, id)
+	err1 := dao.DeleteProject(conf.Db, &project)
 	if err1 != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
