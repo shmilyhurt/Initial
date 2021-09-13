@@ -141,6 +141,10 @@ paths:
           description: success
           schema:
             type: string
+        "500":
+          description: Server error
+          schema:
+            type: string
       summary: 登录
       tags:
       - 用户信息接口
@@ -176,7 +180,135 @@ paths:
           description: success
           schema:
             type: string
+        "400":
+          description: Client data error
+          schema:
+            type: string
+        "500":
+          description: Server error
+          schema:
+            type: string
       summary: 增加计划
+      tags:
+      - 计划信息接口
+  /plan/delete:
+    delete:
+      consumes:
+      - application/json
+      description: 删除单个计划
+      operationId: /plan/delete
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: Client data error
+          schema:
+            type: string
+        "500":
+          description: Server error
+          schema:
+            type: string
+      summary: 删除计划
+      tags:
+      - 计划信息接口
+  /plan/patch:
+    patch:
+      consumes:
+      - multipart/form-data
+      description: 修改计划信息
+      operationId: /plan/patch
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      - in: formData
+        name: end
+        type: string
+      - in: formData
+        name: start
+        type: string
+      - in: formData
+        name: title
+        type: string
+      - in: formData
+        name: user
+        type: integer
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: Client data error
+          schema:
+            type: string
+        "500":
+          description: Server error
+          schema:
+            type: string
+      summary: 修改计划
+      tags:
+      - 计划信息接口
+  /plan/plans:
+    get:
+      consumes:
+      - application/json
+      description: 获取计划信息
+      operationId: /plan/plans
+      parameters:
+      - description: user
+        in: query
+        name: user
+        required: true
+        type: string
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "400":
+          description: Client data error
+          schema:
+            type: string
+        "500":
+          description: Server error
+          schema:
+            type: string
+      summary: 计划信息
       tags:
       - 计划信息接口
   /project/create:

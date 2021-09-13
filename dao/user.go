@@ -18,12 +18,11 @@ func (u *User) TableName() string {
 	return "initial_user"
 }
 
-func LoginCheck(db *gorm.DB, u *User) (User, error) {
+func LoginCheck(db *gorm.DB, u *User) (*gorm.DB, User) {
 	var user User
-	err := db.Where("user_name = ? AND password = ?", u.UserName, u.Password).Find(&user).Error
-	return user, err
+	result := db.Where("user_name = ? AND password = ?", u.UserName, u.Password).Find(&user)
+	return result, user
 }
-
 
 //get users
 func FindAllUser(db *gorm.DB, user *[]User, count *int64, params *dto.UserListInput) (err error) {
@@ -32,13 +31,13 @@ func FindAllUser(db *gorm.DB, user *[]User, count *int64, params *dto.UserListIn
 	pageSize := params.PageSize
 	offset := (pageNo - 1) * pageSize
 	query := db.Limit(pageSize).Offset(offset).Where("is_delete", 1)
-	if len(info) != 0{
-		err = query.Where("id like ?", "%" +info + "%").Or("user_name like ?", "%" +info + "%").Find(&user).Count(count).Error
+	if len(info) != 0 {
+		err = query.Where("id like ?", "%"+info+"%").Or("user_name like ?", "%"+info+"%").Find(&user).Count(count).Error
 		if err != nil {
 			return err
 		}
 		return nil
-	}else{
+	} else {
 		err = query.Find(&user).Count(count).Error
 		if err != nil {
 			return err

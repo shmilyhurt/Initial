@@ -15,7 +15,6 @@ func LoginRegister(router *gin.RouterGroup) {
 	router.POST("/register", RegisterUser)
 }
 
-
 // @Summary 注册
 // @Description 增加用户信息
 // @Tags 用户信息接口
@@ -41,7 +40,6 @@ func RegisterUser(c *gin.Context) {
 	middleware.SuccessResponseWithData(c, user)
 }
 
-
 // @Summary 登录
 // @Description 登录接口
 // @Tags 用户信息接口
@@ -50,6 +48,7 @@ func RegisterUser(c *gin.Context) {
 // @Produce  json
 // @Param name formData dto.UserLoginInput true "name"
 // @Success 200 {object} string "success"
+// @Failure 500 {string} string  "Server error"
 // @Router /login  [post]
 func Login(c *gin.Context) {
 	var r dto.UserLoginInput
@@ -59,9 +58,9 @@ func Login(c *gin.Context) {
 		return
 	}
 	user := dao.User{UserName: r.UserName, Password: r.PassWord}
-	userInfo, err := dao.LoginCheck(conf.Db, &user)
-	if err != nil {
-		middleware.FailResponse(c, 10040, "user not exits")
+	result, userInfo := dao.LoginCheck(conf.Db, &user)
+	if result.RowsAffected == 0 {
+		middleware.FailResponse(c, 500, "user not exits")
 		return
 	} else {
 		generateToken(c, userInfo)
@@ -78,9 +77,9 @@ func generateToken(c *gin.Context, user dao.User) {
 		ID:       user.Id,
 		UserName: user.UserName,
 		StandardClaims: jwt.StandardClaims{
-			NotBefore: int64(time.Now().Unix() - 1000), // 签名生效时间
+			NotBefore: int64(time.Now().Unix() - 1000),   // 签名生效时间
 			ExpiresAt: int64(time.Now().Unix() + 360000), // 过期时间 一小时
-			Issuer:    "lyj",                           //签名的发行者
+			Issuer:    "lyj",                             //签名的发行者
 		},
 	}
 

@@ -41,7 +41,7 @@ func JwtAuth() gin.HandlerFunc{
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("token")
 		if token == ""{
-			FailResponse(c, 100010, "not login")
+			FailResponse(c, 400, "not login")
 			c.Abort()
 			return
 		}
@@ -49,11 +49,11 @@ func JwtAuth() gin.HandlerFunc{
 		claims, err := j.ParseToken(token)
 		if err != nil {
 			if err == TokenExpired {
-				FailResponse(c, 100010, " token expired")
+				FailResponse(c, 400, " token expired")
 				c.Abort()
 				return
 			}
-			FailResponse(c, 100013, err.Error())
+			FailResponse(c, 400, err.Error())
 			c.Abort()
 			return
 		}

@@ -24,6 +24,6 @@ type ProjectListItemOutput struct {
 }
 
 type ProjectListOutput struct {
-	List  []ProjectListItemOutput `json:"list" form:"list" comment:"租户列表"`
-	Total int64               `json:"total" form:"total" comment:"租户总数"`
+	List  []ProjectListItemOutput `json:"list" form:"list" `
+	Total int64               `json:"total" form:"total"`
 }

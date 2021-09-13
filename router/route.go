@@ -106,7 +106,7 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 
 
 	planRouter := router.Group("/plan")
-	eventRouter.Use(
+	planRouter.Use(
 		middleware.JwtAuth(),
 	)
 	{

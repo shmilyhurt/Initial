@@ -6,13 +6,13 @@ import (
 )
 
 type Plan struct {
-	Id int `gorm:"primary_key"`
-	User int `gorm:"column:user;not null"`
-	Title string `gorm:"column:title;not null;size:128"`
-	Start string `gorm:"type:date;column:start"`
-	End string  `gorm:"type:date;column:end"`
-	Created   time.Time `gorm:"autoCreateTime;column:created;type:datetime"`
-	IsDelete int `gorm:"column:is_delete;default:1"`
+	Id       int       `gorm:"primary_key"`
+	User     int       `gorm:"column:user;not null"`
+	Title    string    `gorm:"column:title;not null;size:128"`
+	Start    string    `gorm:"type:date;column:start"`
+	End      string    `gorm:"type:date;column:end"`
+	Created  time.Time `gorm:"autoCreateTime;column:created;type:datetime"`
+	IsDelete int       `gorm:"column:is_delete;default:1"`
 }
 
 func (u *Plan) TableName() string {
@@ -20,8 +20,8 @@ func (u *Plan) TableName() string {
 }
 
 //get plans
-func FindAllPlan(db *gorm.DB, plan *[]Plan) (err error) {
-	err = db.Find(&plan).Error
+func FindUserPlan(db *gorm.DB, plan *[]Plan, user string) (err error) {
+	err = db.Where("user = ? AND is_delete = ?", user, 1).Find(&plan).Error
 	if err != nil {
 		return err
 	}
@@ -38,8 +38,16 @@ func CreatePlan(db *gorm.DB, plan *Plan) (err error) {
 }
 
 //delete plan
-func DeletePlan(db *gorm.DB, plan *Plan, id string) (err error) {
-	db.Where("id = ?", id).Delete(plan)
+func DeletePlan(db *gorm.DB, plan *Plan) (err error) {
+	db.Model(plan).Update("is_delete", 0)
 	return nil
 }
 
+//get plan by id
+func GetPlan(db *gorm.DB, plan *Plan, id string) (err error) {
+	err = db.Where("id = ?", id).First(plan).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
