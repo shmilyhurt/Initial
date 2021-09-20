@@ -19,15 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1ba09be-1580-48fe-8f50-186832d0a5c1" name="Default Changelist" comment="package response">
-      <change beforePath="$PROJECT_DIR$/controller/initial_project.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/initial_project.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/plan.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/plan.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/project.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/project.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/plan.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/plan.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/project.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/project.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
-    </list>
+    <list default="true" id="b1ba09be-1580-48fe-8f50-186832d0a5c1" name="Default Changelist" comment="package response" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,22 +154,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="150" y="120" width="1525" height="767" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628939312708" />
-    <state width="1712" height="259" key="GridCell.Tab.0.bottom" timestamp="1632131549961">
+    <state width="1712" height="259" key="GridCell.Tab.0.bottom" timestamp="1632131630387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
-    <state width="1712" height="259" key="GridCell.Tab.0.center" timestamp="1632131549961">
+    <state width="1712" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1632131630387" />
+    <state width="1712" height="259" key="GridCell.Tab.0.center" timestamp="1632131630387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
-    <state width="1712" height="259" key="GridCell.Tab.0.left" timestamp="1632131549961">
+    <state width="1712" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1632131630387" />
+    <state width="1712" height="259" key="GridCell.Tab.0.left" timestamp="1632131630387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
-    <state width="1712" height="259" key="GridCell.Tab.0.right" timestamp="1632131549961">
+    <state width="1712" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1632131630387" />
+    <state width="1712" height="259" key="GridCell.Tab.0.right" timestamp="1632131630387">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
+    <state width="1712" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1632131630387" />
     <state width="1712" height="315" key="GridCell.Tab.1.bottom" timestamp="1631464451221">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
