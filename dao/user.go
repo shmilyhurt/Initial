@@ -56,8 +56,8 @@ func CreateUser(db *gorm.DB, User *User) (err error) {
 }
 
 //get user by id
-func GetUser(db *gorm.DB, User *User, id string) (err error) {
-	err = db.Where("id = ?", id).First(User).Error
+func GetUser(db *gorm.DB, user *User, id string) (err error) {
+	err = db.Where("id = ?", id).First(user).Error
 	if err != nil {
 		return err
 	}

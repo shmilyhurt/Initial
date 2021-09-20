@@ -27,3 +27,13 @@ type ProjectListOutput struct {
 	List  []ProjectListItemOutput `json:"list" form:"list" `
 	Total int64               `json:"total" form:"total"`
 }
+
+
+type ProjectsItem struct{
+	Id        int       `json:"id" gorm:"primary_key"`
+	User      string    `json:"user" form:"user" comment:"用户" binding:""`
+	Name      string    `json:"name" form:"name" comment:"名字" binding:""`
+	Type      string    `json:"type" form:"type" comment:"类型" binding:""`
+	Status    string    `json:"status" form:"status" comment:"状态" binding:""`
+	CreatedAt time.Time `json:"created" gorm:"column:create_at" description:"创建时间"`
+}

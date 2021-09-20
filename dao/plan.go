@@ -9,8 +9,8 @@ type Plan struct {
 	Id       int       `gorm:"primary_key"`
 	User     int       `gorm:"column:user;not null"`
 	Title    string    `gorm:"column:title;not null;size:128"`
-	Start    string    `gorm:"type:date;column:start"`
-	End      string    `gorm:"type:date;column:end"`
+	Start    string    `gorm:"type:datetime;column:start"`
+	End      string    `gorm:"type:datetime;column:end"`
 	Created  time.Time `gorm:"autoCreateTime;column:created;type:datetime"`
 	IsDelete int       `gorm:"column:is_delete;default:1"`
 }

@@ -16,6 +16,7 @@ type ProjectController struct{}
 func ProjectRegister(router *gin.RouterGroup) {
 	project := ProjectController{}
 	router.GET("/projects", project.GetProjectList)
+	router.GET("/pros", project.GetProjects)
 	router.POST("/create", project.CreateProject)
 	router.DELETE("/delete", project.DelProject)
 	router.PATCH("/patch", project.PatchProject)
@@ -38,7 +39,12 @@ func (projectControl *ProjectController) CreateProject(c *gin.Context) {
 		middleware.FailWithDetailed(c, 10001, err1.Error(), "params error")
 		return
 	}
-	project := dao.Project{Name: r.Name, Type: r.Type, Status: r.Status}
+	token := c.Request.Header.Get("token")
+	j := &middleware.JWT{
+		SigningKey: []byte(middleware.JwtConfig{}.SigningKey),
+	}
+	customClaims, _  := j.ParseToken(token)
+	project := dao.Project{Name: r.Name, Type: r.Type, Status: r.Status, User: customClaims.ID}
 	fmt.Print(project)
 	err := dao.CreateProject(conf.Db, &project)
 	if err != nil {
@@ -48,8 +54,8 @@ func (projectControl *ProjectController) CreateProject(c *gin.Context) {
 	middleware.SuccessResponseWithData(c, project)
 }
 
-// @Summary 项目信息
-// @Description 获取项目信息
+// @Summary 项目分页信息
+// @Description 获取项目分页信息
 // @Tags 项目信息接口
 // @ID /project/projects
 // @Accept  json
@@ -153,3 +159,39 @@ func (projectControl *ProjectController) PatchProject(c *gin.Context) {
 	middleware.SuccessResponseWithData(c, project)
 }
 
+
+// @Summary 项目信息
+// @Description 获取项目信息
+// @Tags 项目信息接口
+// @ID /project/pros
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} string "success"
+// @Router /project/pros  [get]
+// @Param token header string true "Insert your access token" default(Bearer <Add access token here>)
+func (projectControl *ProjectController) GetProjects(c *gin.Context) {
+	var project []dao.Project
+	err := dao.GetProjects(conf.Db, &project)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
+		return
+	}
+	var outputList []dto.ProjectsItem
+	for _, item := range project{
+		var user dao.User
+		userErr := dao.GetUser(conf.Db, &user, strconv.Itoa(item.User))
+		if userErr != nil {
+			middleware.FailWithDetailed(c, 500, userErr.Error(), "has error")
+			return
+		}
+		outputList = append(outputList, dto.ProjectsItem{
+			Id: item.Id,
+			User: user.UserName,
+			Name: item.Name,
+			Type: item.Type,
+			Status: item.Status,
+			CreatedAt: item.Created,
+		})
+	}
+	middleware.SuccessResponseWithData(c, outputList)
+}

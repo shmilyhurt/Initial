@@ -66,3 +66,12 @@ func DeleteProject(db *gorm.DB, Project *Project) (err error) {
 	db.Model(Project).Update("is_delete", 0)
 	return nil
 }
+
+//get projects
+func GetProjects(db *gorm.DB, project *[]Project) (err error) {
+	err = db.Find(&project).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}

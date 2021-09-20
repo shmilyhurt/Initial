@@ -18,17 +18,16 @@ type JwtConfig struct {
 }
 
 type CustomClaims struct {
-	ID int `json:"id"`
-	UserName  string `json:"username"`
+	ID       int    `json:"id"`
+	UserName string `json:"username"`
 	jwt.StandardClaims
 }
 
 type LoginResponse struct {
 	User      dao.User `json:"user"`
-	Token     string        `json:"token"`
-	ExpiresAt int64         `json:"expiresAt"`
+	Token     string   `json:"token"`
+	ExpiresAt int64    `json:"expiresAt"`
 }
-
 
 var (
 	TokenExpired     = errors.New("Token is expired")
@@ -37,10 +36,10 @@ var (
 	TokenInvalid     = errors.New("Couldn't handle this token:")
 )
 
-func JwtAuth() gin.HandlerFunc{
+func JwtAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("token")
-		if token == ""{
+		if token == "" {
 			FailResponse(c, 400, "not login")
 			c.Abort()
 			return
@@ -57,17 +56,17 @@ func JwtAuth() gin.HandlerFunc{
 			c.Abort()
 			return
 		}
-		c.Set("claims",claims)
+		c.Set("claims", claims)
 	}
 }
 
-func NewJwt() *JWT{
+func NewJwt() *JWT {
 	return &JWT{
 		[]byte(JwtConfig{}.SigningKey),
 	}
 }
 
-func (j *JWT)CreateToken(claims CustomClaims)(string, error){
+func (j *JWT) CreateToken(claims CustomClaims) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString(j.SigningKey)
 }

@@ -20,19 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1ba09be-1580-48fe-8f50-186832d0a5c1" name="Default Changelist" comment="package response">
-      <change beforePath="$PROJECT_DIR$/controller/initial_plan.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/initial_plan.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/initial_project.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/initial_project.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/plan.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/plan.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/project.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/project.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dto/plan.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/plan.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dto/project.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/project.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/middleware/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/route.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,10 +150,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="225" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1627197201940" />
-    <state x="656" y="144" key="#go_build_Initial_user.go" timestamp="1623256984968">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="144" key="#go_build_Initial_user.go/0.0.1920.1040@0.0.1920.1040" timestamp="1623256984968" />
     <state x="731" y="180" key="#go_build_initial_plan.go" timestamp="1631454063112">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -172,26 +162,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="150" y="120" width="1525" height="767" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628939312708" />
-    <state x="735" y="261" key="FileChooserDialogImpl" timestamp="1622987658544">
+    <state width="1712" height="259" key="GridCell.Tab.0.bottom" timestamp="1632131549961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="735" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1622987658544" />
-    <state width="1712" height="259" key="GridCell.Tab.0.bottom" timestamp="1631547973905">
+    <state width="1712" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
+    <state width="1712" height="259" key="GridCell.Tab.0.center" timestamp="1632131549961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1631547973905" />
-    <state width="1712" height="259" key="GridCell.Tab.0.center" timestamp="1631547973905">
+    <state width="1712" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
+    <state width="1712" height="259" key="GridCell.Tab.0.left" timestamp="1632131549961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1631547973905" />
-    <state width="1712" height="259" key="GridCell.Tab.0.left" timestamp="1631547973905">
+    <state width="1712" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
+    <state width="1712" height="259" key="GridCell.Tab.0.right" timestamp="1632131549961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1631547973905" />
-    <state width="1712" height="259" key="GridCell.Tab.0.right" timestamp="1631547973905">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631547973905" />
+    <state width="1712" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1632131549961" />
     <state width="1712" height="315" key="GridCell.Tab.1.bottom" timestamp="1631464451221">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -208,10 +194,6 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1712" height="315" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1631464451221" />
-    <state x="435" y="273" key="Vcs.Push.Dialog.v2" timestamp="1623341744608">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="435" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1623341744608" />
     <state width="800" height="440" key="XDebugger.FullValuePopup" timestamp="1623859878513">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -224,19 +206,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="642" y="179" width="596" height="594" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1627576248407" />
-    <state x="615" y="188" width="670" height="676" key="search.everywhere.popup" timestamp="1627833529984">
+    <state x="615" y="188" width="672" height="676" key="search.everywhere.popup" timestamp="1632065223852">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="615" y="188" width="670" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1627833529984" />
+    <state x="615" y="188" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1632065223852" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/controller/initial_plan.go</url>
-          <line>130</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/controller/initial_plan.go</url>
           <line>35</line>
