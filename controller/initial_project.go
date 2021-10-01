@@ -5,10 +5,10 @@ import (
 	"Initial/dao"
 	"Initial/dto"
 	"Initial/middleware"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 type ProjectController struct{}
@@ -35,6 +35,7 @@ func ProjectRegister(router *gin.RouterGroup) {
 func (projectControl *ProjectController) CreateProject(c *gin.Context) {
 	var r dto.ProjectInput
 	err1 := c.ShouldBind(&r)
+	ProType := map[string]string{"S":"Small", "M": "Medium", "L": "Large", "D": "Danger"}
 	if err1 != nil {
 		middleware.FailWithDetailed(c, 10001, err1.Error(), "params error")
 		return
@@ -45,12 +46,12 @@ func (projectControl *ProjectController) CreateProject(c *gin.Context) {
 	}
 	customClaims, _  := j.ParseToken(token)
 	project := dao.Project{Name: r.Name, Type: r.Type, Status: r.Status, User: customClaims.ID}
-	fmt.Print(project)
 	err := dao.CreateProject(conf.Db, &project)
 	if err != nil {
 		middleware.FailResponse(c, 10002, "create failed")
 		return
 	}
+	project.Type = ProType[project.Type]
 	middleware.SuccessResponseWithData(c, project)
 }
 
@@ -105,16 +106,22 @@ func (projectControl *ProjectController) GetProjectList(c *gin.Context) {
 // @Param id query string true "id"
 // @Param token header string true "Insert your access token" default(Bearer <Add access token here>)
 func (projectControl *ProjectController) DelProject(c *gin.Context) {
-	var project dao.Project
-	id := c.Query("id")
-	err := dao.GetProject(conf.Db, &project, id)
+	var project []dao.Project
+	id := c.Query("ids")
+	ids := strings.FieldsFunc(id, func(r rune) bool {
+		if r == ',' {
+			return true
+		}
+		return false
+	})
+	err := dao.GetProjectByIdList(conf.Db, &project, ids)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
 		return
 	}
 	err1 := dao.DeleteProject(conf.Db, &project)
 	if err1 != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err1})
 		return
 	}
 	middleware.SuccessResponseWithMessage(c, "delete success")
@@ -171,6 +178,7 @@ func (projectControl *ProjectController) PatchProject(c *gin.Context) {
 // @Param token header string true "Insert your access token" default(Bearer <Add access token here>)
 func (projectControl *ProjectController) GetProjects(c *gin.Context) {
 	var project []dao.Project
+	ProType := map[string]string{"S":"Small", "M": "Medium", "L": "Large", "D": "Danger"}
 	err := dao.GetProjects(conf.Db, &project)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
@@ -188,7 +196,7 @@ func (projectControl *ProjectController) GetProjects(c *gin.Context) {
 			Id: item.Id,
 			User: user.UserName,
 			Name: item.Name,
-			Type: item.Type,
+			Type: ProType[item.Type],
 			Status: item.Status,
 			CreatedAt: item.Created,
 		})
