@@ -20,9 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1ba09be-1580-48fe-8f50-186832d0a5c1" name="Default Changelist" comment="package response">
-      <change beforePath="$PROJECT_DIR$/controller/initial_project.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/initial_project.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/project.go" beforeDir="false" afterPath="$PROJECT_DIR$/dao/project.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/db.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/db.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dto/project.go" beforeDir="false" afterPath="$PROJECT_DIR$/dto/project.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/route.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +107,16 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.Dockerfile" />
       <item itemvalue="Go Build.go build Initial_user.go" />
       <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build initial_plan.go" />
@@ -110,6 +124,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Docker.Dockerfile" />
         <item itemvalue="Go Build.go build initial_plan.go" />
         <item itemvalue="Go Build.go build Initial_user.go" />
       </list>
@@ -138,10 +153,14 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630856516332">
+    <state x="702" y="59" key="#Dockerfile" timestamp="1633095224052">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1630856516332" />
+    <state x="702" y="59" key="#Dockerfile/0.0.1920.1040@0.0.1920.1040" timestamp="1633095224052" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1633161308006">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1633161308006" />
     <state x="740" y="225" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1627197201940">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -158,42 +177,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="150" y="120" width="1525" height="767" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628939312708" />
-    <state width="1712" height="259" key="GridCell.Tab.0.bottom" timestamp="1633086378220">
+    <state width="1393" height="259" key="GridCell.Tab.0.bottom" timestamp="1633187117528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633086378220" />
-    <state width="1712" height="259" key="GridCell.Tab.0.center" timestamp="1633086378219">
+    <state width="1393" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633187117528" />
+    <state width="1393" height="259" key="GridCell.Tab.0.center" timestamp="1633187117528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633086378219" />
-    <state width="1712" height="259" key="GridCell.Tab.0.left" timestamp="1633086378219">
+    <state width="1393" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633187117528" />
+    <state width="1393" height="259" key="GridCell.Tab.0.left" timestamp="1633187117528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633086378219" />
-    <state width="1712" height="259" key="GridCell.Tab.0.right" timestamp="1633086378219">
+    <state width="1393" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633187117528" />
+    <state width="1393" height="259" key="GridCell.Tab.0.right" timestamp="1633187117528">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633086378219" />
-    <state width="1712" height="315" key="GridCell.Tab.1.bottom" timestamp="1633084162904">
+    <state width="1393" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633187117528" />
+    <state width="1712" height="315" key="GridCell.Tab.1.bottom" timestamp="1633109398008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="315" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633084162904" />
-    <state width="1712" height="315" key="GridCell.Tab.1.center" timestamp="1633084162904">
+    <state width="1712" height="315" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1633109398008" />
+    <state width="1712" height="315" key="GridCell.Tab.1.center" timestamp="1633109398008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="315" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633084162904" />
-    <state width="1712" height="315" key="GridCell.Tab.1.left" timestamp="1633084162904">
+    <state width="1712" height="315" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1633109398008" />
+    <state width="1712" height="315" key="GridCell.Tab.1.left" timestamp="1633109398008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="315" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633084162904" />
-    <state width="1712" height="315" key="GridCell.Tab.1.right" timestamp="1633084162904">
+    <state width="1712" height="315" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1633109398008" />
+    <state width="1712" height="315" key="GridCell.Tab.1.right" timestamp="1633109398008">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1712" height="315" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633084162904" />
-    <state x="364" y="103" width="1105" height="637" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1631547975284">
+    <state width="1712" height="315" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1633109398008" />
+    <state x="364" y="103" width="1105" height="637" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1633106183047">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="364" y="103" width="1105" height="637" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1631547975284" />
+    <state x="364" y="103" width="1105" height="637" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1633106183047" />
     <state x="642" y="179" width="596" height="594" key="find.popup" timestamp="1627576248407">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -210,11 +229,6 @@
           <url>file://$PROJECT_DIR$/controller/initial_plan.go</url>
           <line>35</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/controller/initial_project.go</url>
-          <line>113</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

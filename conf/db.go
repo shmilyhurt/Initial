@@ -1,9 +1,7 @@
 package conf
 
 import (
-	"context"
 	"fmt"
-	"github.com/go-redis/redis/v8"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -11,7 +9,7 @@ import (
 const DbUsername = "root"
 const DbPassword = "123456"
 const DbName = "more"
-const DbHost = "127.0.0.1"
+const DbHost = "39.106.0.163"
 const DbPort = "3306"
 
 var Db *gorm.DB
@@ -35,21 +33,21 @@ func connectDB() *gorm.DB {
 	return db
 }
 
-var Rdb *redis.Client
-var Ctx = context.Background()
-
-func RedisInit() *redis.Client {
-	RedisClient := redis.NewClient(&redis.Options{
-		Addr:     "127.0.0.1:6379",
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-	pong, err := RedisClient.Ping(Ctx).Result()
-	if err != nil {
-		fmt.Println("connect redis failed")
-		return nil
-	}
-	fmt.Printf("redis ping result: %s\n", pong)
-	Rdb = RedisClient
-	return Rdb
-}
+//var Rdb *redis.Client
+//var Ctx = context.Background()
+//
+//func RedisInit() *redis.Client {
+//	RedisClient := redis.NewClient(&redis.Options{
+//		Addr:     "127.0.0.1:6379",
+//		Password: "", // no password set
+//		DB:       0,  // use default DB
+//	})
+//	pong, err := RedisClient.Ping(Ctx).Result()
+//	if err != nil {
+//		fmt.Println("connect redis failed")
+//		return nil
+//	}
+//	fmt.Printf("redis ping result: %s\n", pong)
+//	Rdb = RedisClient
+//	return Rdb
+//}

@@ -1,0 +1,31 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:5.7.23
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - /nib/mysql/data/:/var/lib/mysql
+      - /nib/mysql/sql:/docker-entrypoint-initdb.d
+    environment:
+      - "MYSQL_ROOT_PASSWORD=123456"
+      - "MYSQL_ROOT_HOST=%"
+      - "MYSQL_DATABASE=more"
+      - "TZ=Asia/Shanghai"
+
+  web:
+    image: app:latest
+    links:
+      - mysql
+    restart: on-failure
+    ports:
+      - "8880:8880"
+
+  vue:
+    image: vue:latest
+    restart: on-failure
+    ports:
+    - "80:80"

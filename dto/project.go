@@ -37,7 +37,3 @@ type ProjectsItem struct{
 	Status    string    `json:"status" form:"status" comment:"状态" binding:""`
 	CreatedAt time.Time `json:"created" gorm:"column:create_at" description:"创建时间"`
 }
-
-type ProjectsId struct {
-	Ids  string `json:"ids"`
-}

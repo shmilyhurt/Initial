@@ -639,6 +639,40 @@ var doc = `{
         },
         "/project/projects": {
             "get": {
+                "description": "获取项目分页信息",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "项目信息接口"
+                ],
+                "summary": "项目分页信息",
+                "operationId": "/project/projects",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "Bearer \u003cAdd access token here\u003e",
+                        "description": "Insert your access token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/project/pros": {
+            "get": {
                 "description": "获取项目信息",
                 "consumes": [
                     "application/json"
@@ -650,7 +684,7 @@ var doc = `{
                     "项目信息接口"
                 ],
                 "summary": "项目信息",
-                "operationId": "/project/projects",
+                "operationId": "/project/pros",
                 "parameters": [
                     {
                         "type": "string",

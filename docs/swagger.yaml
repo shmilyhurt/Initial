@@ -412,8 +412,31 @@ paths:
     get:
       consumes:
       - application/json
-      description: 获取项目信息
+      description: 获取项目分页信息
       operationId: /project/projects
+      parameters:
+      - default: Bearer <Add access token here>
+        description: Insert your access token
+        in: header
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      summary: 项目分页信息
+      tags:
+      - 项目信息接口
+  /project/pros:
+    get:
+      consumes:
+      - application/json
+      description: 获取项目信息
+      operationId: /project/pros
       parameters:
       - default: Bearer <Add access token here>
         description: Insert your access token

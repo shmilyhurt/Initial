@@ -11,7 +11,6 @@ import (
 
 func main() {
 	conf.InitDb()
-	conf.RedisInit()
 	public.InitValidator()
 	err := router.InitRouter().Run(":8880")
 	if err != nil {
