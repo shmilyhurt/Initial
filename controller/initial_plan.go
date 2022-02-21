@@ -5,6 +5,7 @@ import (
 	"Initial/dao"
 	"Initial/dto"
 	"Initial/middleware"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-module/carbon"
 	"net/http"
@@ -39,8 +40,10 @@ func (planControl *PlanController) CreatePlan(c *gin.Context) {
 		middleware.FailWithDetailed(c, 400, err1.Error(), "params error")
 		return
 	}
+	fmt.Println(r)
 	start := carbon.Parse(r.Start, carbon.Shanghai).ToDateTimeString()
 	end := carbon.Parse(r.End, carbon.Shanghai).ToDateTimeString()
+	fmt.Println(start, end)
 	plan := dao.Plan{Title: r.Title, User: r.User, Start: start, End: end}
 	err := dao.CreatePlan(conf.Db, &plan)
 	if err != nil {
