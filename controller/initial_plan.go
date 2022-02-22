@@ -5,7 +5,6 @@ import (
 	"Initial/dao"
 	"Initial/dto"
 	"Initial/middleware"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-module/carbon"
 	"net/http"
@@ -40,10 +39,8 @@ func (planControl *PlanController) CreatePlan(c *gin.Context) {
 		middleware.FailWithDetailed(c, 400, err1.Error(), "params error")
 		return
 	}
-	fmt.Println(r)
-	start := carbon.Parse(r.Start, carbon.Shanghai).ToDateTimeString()
-	end := carbon.Parse(r.End, carbon.Shanghai).ToDateTimeString()
-	fmt.Println(start, end)
+	start := carbon.Parse(r.Start).ToDateTimeString()
+	end := carbon.Parse(r.End).ToDateTimeString()
 	plan := dao.Plan{Title: r.Title, User: r.User, Start: start, End: end}
 	err := dao.CreatePlan(conf.Db, &plan)
 	if err != nil {
@@ -74,17 +71,17 @@ func (planControl *PlanController) GetPlan(c *gin.Context) {
 		return
 	}
 	var outputList []dto.PlanListItemOutput
-	for _, item := range plan{
+	for _, item := range plan {
 		outputList = append(outputList, dto.PlanListItemOutput{
-			Id: item.Id,
-			User: item.User,
+			Id:    item.Id,
+			User:  item.User,
 			Title: item.Title,
 			Start: item.Start,
-			End: item.End,
+			End:   item.End,
 		})
 	}
 	output := dto.PlanListOutput{
-		List:  outputList,
+		List: outputList,
 	}
 	middleware.SuccessResponseWithData(c, output)
 }
@@ -148,10 +145,10 @@ func (planControl *PlanController) PatchPlan(c *gin.Context) {
 		plan.Title = r.Title
 	}
 	if r.Start != "" {
-		plan.Start = carbon.Parse(r.Start, carbon.Shanghai).ToDateTimeString()
+		plan.Start = carbon.Parse(r.Start).ToDateTimeString()
 	}
 	if r.End != "" {
-		plan.End = carbon.Parse(r.End, carbon.Shanghai).ToDateTimeString()
+		plan.End = carbon.Parse(r.End).ToDateTimeString()
 	}
 	conf.Db.Updates(&plan)
 	middleware.SuccessResponseWithData(c, plan)
