@@ -75,8 +75,7 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	loginRouter := router.Group("")
-	loginRouter.Use(
-	)
+	loginRouter.Use()
 	{
 		controller.LoginRegister(loginRouter)
 	}
@@ -105,13 +104,20 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 		controller.EventRegister(eventRouter)
 	}
 
-
 	planRouter := router.Group("/plan")
 	planRouter.Use(
 		middleware.JwtAuth(),
 	)
 	{
 		controller.PlanRegister(planRouter)
+	}
+
+	dashRouter := router.Group("/dash")
+	dashRouter.Use(
+	//middleware.JwtAuth(),
+	)
+	{
+		controller.DashProStatusRegister(dashRouter)
 	}
 
 	return router

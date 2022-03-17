@@ -11,6 +11,7 @@ import (
 
 func main() {
 	conf.InitDb()
+	//task.InitTask()
 	public.InitValidator()
 	err := router.InitRouter().Run(":8880")
 	if err != nil {
