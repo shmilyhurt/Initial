@@ -14,4 +14,5 @@ func InitTask() {
 func FayForPro() {
 	dao.CreateDashProStatus()
 	dao.CreateDashProType()
+	dao.CreateDashAll()
 }

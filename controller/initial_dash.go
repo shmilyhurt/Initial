@@ -4,21 +4,30 @@ import (
 	"Initial/conf"
 	"Initial/dao"
 	"Initial/middleware"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"sort"
 )
 
-type DashProStatusController struct{}
+type DashController struct{}
 
-func DashProStatusRegister(router *gin.RouterGroup) {
-	project := DashProStatusController{}
+func DashRegister(router *gin.RouterGroup) {
+	project := DashController{}
+	router.GET("/all", project.GetDashAll)
 	router.GET("/pro_status", project.GetDashProStatus)
 	router.GET("/pro_type", project.GetDashProType)
 }
 
-func (dashProStatusControl *DashProStatusController) GetDashProStatus(c *gin.Context) {
+func (dashControl *DashController) GetDashAll(c *gin.Context) {
+	var dashAll dao.DashAll
+	err := dao.GetDashAll(conf.Db, &dashAll)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err})
+		return
+	}
+	middleware.SuccessResponseWithData(c, dashAll)
+}
+
+func (dashControl *DashController) GetDashProStatus(c *gin.Context) {
 	var dashProStatus dao.DashProStatus
 	err := dao.GetDashProStatus(conf.Db, &dashProStatus)
 	if err != nil {
@@ -28,7 +37,7 @@ func (dashProStatusControl *DashProStatusController) GetDashProStatus(c *gin.Con
 	middleware.SuccessResponseWithData(c, dashProStatus)
 }
 
-func (dashProStatusControl *DashProStatusController) GetDashProType(c *gin.Context) {
+func (dashControl *DashController) GetDashProType(c *gin.Context) {
 	var dashProType []dao.DashProType
 	err := dao.GetDashProType(conf.Db, &dashProType)
 	if err != nil {
@@ -54,12 +63,11 @@ func (dashProStatusControl *DashProStatusController) GetDashProType(c *gin.Conte
 	result = append(result, mCount)
 	result = append(result, lCount)
 	result = append(result, dCount)
-	fmt.Println(result)
 	middleware.SuccessResponseWithData(c, result)
 }
 
 func reverse(a []int) {
-	sort.Slice(a, func(i, j int) bool {
-		return a[i] < a[j]
-	})
+	for i, j := 0, len(a)-1; i < j; i, j = i+1, j-1 {
+		a[i], a[j] = a[j], a[i]
+	}
 }

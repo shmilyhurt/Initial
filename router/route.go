@@ -117,8 +117,8 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 	//middleware.JwtAuth(),
 	)
 	{
-		controller.DashProStatusRegister(dashRouter)
+		controller.DashRegister(dashRouter)
 	}
-
+	router.Use()
 	return router
 }

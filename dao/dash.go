@@ -25,12 +25,24 @@ type DashProType struct {
 	Created time.Time `gorm:"autoCreateTime;column:created;type:datetime"`
 }
 
+type DashAll struct {
+	Id        int       `gorm:"primary_key"`
+	UserCount int       `gorm:"column:user_count;default:0"`
+	ProCount  int       `gorm:"column:pro_count;default:0"`
+	PlanCount int       `gorm:"column:plan_count;default:0"`
+	Created   time.Time `gorm:"autoCreateTime;column:created;type:datetime"`
+}
+
 func (d *DashProStatus) TableName() string {
 	return "dash_pro_status"
 }
 
 func (d *DashProType) TableName() string {
 	return "dash_pro_type"
+}
+
+func (d *DashAll) TableName() string {
+	return "dash_all"
 }
 
 func CreateDashProStatus() {
@@ -76,6 +88,22 @@ func CreateDashProType() {
 	conf.Db.Create(&dashProType)
 }
 
+func CreateDashAll() {
+	var dashAll DashAll
+	var (
+		UserCount int64
+		ProCount  int64
+		PlanCount int64
+	)
+	conf.Db.Find(&User{}).Where("is_delete", "1").Count(&UserCount)
+	conf.Db.Find(&Project{}).Where("is_delete", "1").Count(&ProCount)
+	conf.Db.Find(&Plan{}).Where("is_delete", "1").Count(&PlanCount)
+	dashAll.UserCount = int(UserCount)
+	dashAll.ProCount = int(ProCount)
+	dashAll.PlanCount = int(PlanCount)
+	conf.Db.Create(&dashAll)
+}
+
 func GetDashProStatus(db *gorm.DB, dashProStatus *DashProStatus) (err error) {
 	err = db.Last(dashProStatus).Error
 	if err != nil {
@@ -86,6 +114,14 @@ func GetDashProStatus(db *gorm.DB, dashProStatus *DashProStatus) (err error) {
 
 func GetDashProType(db *gorm.DB, dashProType *[]DashProType) (err error) {
 	err = db.Order("id desc").Limit(7).Find(dashProType).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func GetDashAll(db *gorm.DB, dashAll *DashAll) (err error) {
+	err = db.Last(dashAll).Error
 	if err != nil {
 		return err
 	}
